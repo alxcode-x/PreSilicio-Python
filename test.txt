@@ -1,0 +1,17 @@
+MAIN:    addi,	x2,	x6,	0x04
+	 add,	x0,	x1,	x7
+	 and,	x7,	x0,	x3
+INC:     andi,	x1,	x2,	-1
+	 add,	x0,	x0,	x0
+	 bne,   x1,	x2,	INC
+         addi,	x2,	x2,	-1
+FUNC:	 jal,	EXIT	
+DEC:	 lb,	x7,	4,	x5
+	 jr,	x6
+	 beq,   x2,     x0,	FUNC
+	 j,	DEC		
+          or, 	x2,	x4,	x6
+	 sb, 	x0,	2,	x3
+EXIT:	 sll,    x1,     x3,     x5
+	 jal,    MAIN
+	 srl,   x1,      x4,     x1
